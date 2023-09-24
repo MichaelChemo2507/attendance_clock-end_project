@@ -3,9 +3,9 @@ const router = express.Router();
 module.exports = router;
 
 router.post("/Entry/:emp_id",(req,res)=>{
-    let {day,Entry_time} = req.body;
-    let Query = `INSERT INTO employees_clock(Employee_id,day,Entry_time) `;
-    Query += `VALUES('${req.params.emp_id}','${day}','${Entry_time}')`;
+    let {Entry_time} = req.body;
+    let Query = `INSERT INTO employees_clock(Employee_id,Entry_time) `;
+    Query += `VALUES('${req.params.emp_id}','${Entry_time}')`;
     db_pool.query(Query,function (err,rows,fields,){
         if (err){
             res.status(500).json({message:err});

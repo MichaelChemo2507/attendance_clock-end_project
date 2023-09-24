@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2023 at 11:14 AM
+-- Generation Time: Sep 24, 2023 at 03:33 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -50,10 +50,17 @@ INSERT INTO `employees` (`Employee_id`, `Employee_name`) VALUES
 CREATE TABLE `employees_clock` (
   `id` int(250) NOT NULL,
   `Employee_id` int(250) NOT NULL,
-  `day` date NOT NULL,
-  `Entry_time` time NOT NULL,
-  `Exit_time` time NOT NULL
+  `Entry_time` datetime NOT NULL,
+  `Exit_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `employees_clock`
+--
+
+INSERT INTO `employees_clock` (`id`, `Employee_id`, `Entry_time`, `Exit_time`) VALUES
+(2, 2, '2023-09-24 00:00:00', '2023-09-24 16:20:10'),
+(3, 2, '2023-09-24 00:00:00', '2023-09-24 16:00:10');
 
 --
 -- Indexes for dumped tables
@@ -86,7 +93,7 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `employees_clock`
 --
 ALTER TABLE `employees_clock`
-  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
