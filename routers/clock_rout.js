@@ -38,7 +38,9 @@ router.delete("/Delete/:id",(req,res)=>{
     })
 });
 router.get("/List",(req, res) => {
-    let addQuery = `SELECT * FROM employees_clock `;
+    let id = req.body.id;
+    let addQuery = `SELECT * FROM employees_clock`;
+    if (id) addQuery += ` WHERE Employee_id = ${id}`;
     db_pool.query(addQuery,function (err,rows,fields){
         if (err) res.status(500).json({message: err});
         else res.status(200).json({rows:rows});
