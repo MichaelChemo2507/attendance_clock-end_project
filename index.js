@@ -12,6 +12,8 @@ global.db_pool = db_M.pool;
 
 const emp_rtr = require('./routers/emp_rout');
 app.use('/Employees', emp_rtr);
+const clock_rtr = require('./routers/clock_rout');
+app.use('/Clock', clock_rtr);
 
 
 app.listen(port, () => {
