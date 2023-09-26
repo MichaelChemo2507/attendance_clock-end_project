@@ -3,26 +3,27 @@ const router = express.Router();
 module.exports = router;
 
 router.post("/Add",(req,res)=>{
-    let {Employee_name} = req.body;
-    let Query = `INSERT INTO employees(Employee_name) `;
-    Query += `VALUES('${Employee_name}')`;
+    let {FirstName,	LastName} = req.body;
+    let Query = `INSERT INTO employees(FirstName,LastName) `;
+    Query += `VALUES('${FirstName}','${LastName}')`;
     db_pool.query(Query,function (err,rows,fields,){
         if (err){
             res.status(500).json({message:err});
         }else{
-            res.status(200).json({message:"OK",Last_Id:rows.insertId});
+            res.redirect('http://localhost:3507/Front/Emp');
         }
     })
 });
 router.post("/Update/:id",(req ,res)=>{
-    let {Employee_name} = req.body;
+    let {FirstName,LastName} = req.body;
 
-    let Query = `UPDATE employees SET Employee_name = '${Employee_name}' WHERE Employee_id = ${req.params.id}`;
+    let Query = `UPDATE employees SET FirstName = '${FirstName}', `;
+        Query += `LastName = '${LastName}' WHERE Employee_id = ${req.params.id}`;
     db_pool.query(Query,function (err,rows,fields){
         if (err){
             res.status(500).json({message:err});
         }else{
-            res.status(200).json({message:"OK"});
+            res.redirect('http://localhost:3507/Front/Emp');
         }
     })
 })

@@ -1,0 +1,26 @@
+<%- include("top_page.ejs")%>
+<main>
+    <div class="wrapper">
+
+        <h1>Workers management</h1>
+        <form action="http://localhost:3507/Employees/Add" method="post" id="empForm" >
+            <input type="text"      placeholder="first name..."     id="FirstName"     name="FirstName"   ><br>
+            <input type="text"      placeholder="last name..."      id="LastName"       name="LastName"        ><br>
+            <button>Add</button>
+        </form>
+        <table>
+            <thead>
+            <tr>
+                <th> Edit </th>
+                <th> ID </th>
+                <th> שם פרטי </th>
+                <th> שם משפחה </th>
+                <th> Delete </th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</main>
+<script src="/main_emp.js"></script>
+<%- include("bottom_page.ejs")%>

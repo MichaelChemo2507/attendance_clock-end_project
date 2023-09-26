@@ -1,10 +1,10 @@
 const express = require('express');
 const port = 3507;
 const app = express();
+app.use(express.json());
+
 const path = require('path');
 const bodyParser = require('body-parser');
-app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({extended: false}));
 
 let db_M = require('./database');
