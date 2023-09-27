@@ -17,7 +17,7 @@ router.post("/Entry/:emp_id",(req,res)=>{
 router.post("/Exit/:id",(req,res)=>{
     let {Exit_time} = req.body;
     let Query = `UPDATE employees_clock `;
-    Query += `SET Exit_time = '${Exit_time}' WHERE id = ${req.params.id}`;
+    Query += `SET Exit_time = '${Exit_time}' WHERE Employee_id = ${req.params.id} AND Exit_time = ""`;
     db_pool.query(Query,function (err,rows,fields,){
         if (err){
             res.status(500).json({message:err});

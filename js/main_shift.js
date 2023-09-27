@@ -1,13 +1,14 @@
 let EmpNames = document.getElementById("empNames"),
 entryBtn = document.getElementsByTagName("button")[0],
-exitBtn = document.getElementsByTagName("button")[1],
-date = new Date();
+exitBtn = document.getElementsByTagName("button")[1];
 
 
-let currentDate =   `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 getEmpId();
 
 entryBtn.addEventListener("click", async ()=>{
+const date = new Date();
+    let currentDate =   `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+
     let response = await fetch(`http://localhost:3507/Clock/Entry/${EmpNames.value}`,{
         method:'POST',
         headers:{
@@ -15,6 +16,20 @@ entryBtn.addEventListener("click", async ()=>{
         },
         body:JSON.stringify({
             Entry_time:currentDate
+        })
+    })
+})
+
+exitBtn.addEventListener("click", async ()=>{
+    const date = new Date();
+    let currentDate =   `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    let response = await fetch(`http://localhost:3507/Clock/Exit/${EmpNames.value}`,{
+        method:'POST',
+        headers:{
+            'content-Type':'application/json'
+        },
+        body:JSON.stringify({
+            Exit_time:currentDate
         })
     })
 })
