@@ -6,17 +6,11 @@ exitBtn = document.getElementsByTagName("button")[1];
 getEmpId();
 
 entryBtn.addEventListener("click", async ()=>{
-const date = new Date();
-    let currentDate =   `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-
-    let response = await fetch(`http://localhost:3507/Clock/Entry/${EmpNames.value}`,{
+  let response = await fetch(`http://localhost:3507/Clock/Entry/${EmpNames.value}`,{
         method:'POST',
         headers:{
             'content-Type':'application/json'
-        },
-        body:JSON.stringify({
-            Entry_time:currentDate
-        })
+        }
     })
 })
 
@@ -27,10 +21,7 @@ exitBtn.addEventListener("click", async ()=>{
         method:'POST',
         headers:{
             'content-Type':'application/json'
-        },
-        body:JSON.stringify({
-            Exit_time:currentDate
-        })
+        }
     })
 })
 
