@@ -7,22 +7,18 @@ getEmpId();
 
 entryBtn.addEventListener("click", async ()=>{
   let response = await fetch(`http://localhost:3507/Clock/Entry/${EmpNames.value}`,{
-        method:'POST',
-        headers:{
-            'content-Type':'application/json'
-        }
+        method:'POST'
     })
+    let data = await response.json();
+  if (data.Last_Id > 0) alert('start a shift')
+  else if (data.Last_Id === 0) alert('you\'r in the system')
 })
 
 exitBtn.addEventListener("click", async ()=>{
-    const date = new Date();
-    let currentDate =   `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
     let response = await fetch(`http://localhost:3507/Clock/Exit/${EmpNames.value}`,{
-        method:'POST',
-        headers:{
-            'content-Type':'application/json'
-        }
+        method:'POST'
     })
+    alert('you\'r not in the system')
 })
 
 

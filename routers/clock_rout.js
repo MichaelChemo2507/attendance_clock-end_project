@@ -16,14 +16,13 @@ router.post("/Entry/:emp_id",(req,res)=>{
     })
 });
 router.post("/Exit/:id",(req,res)=>{
-    let {Exit_time} = req.body;
     let Query = `UPDATE employees_clock `;
     Query += `SET Exit_time = CURRENT_TIMESTAMP WHERE Employee_id = ${req.params.id} AND Exit_time IS NULL`;
     db_pool.query(Query,function (err,rows,fields,){
         if (err){
             res.status(500).json({message:err});
         }else{
-            res.status(200).json({message:"OK"});
+            res.status(200).json({message:"OK",Last_Id:rows.insertId});
         }
     })
 });
