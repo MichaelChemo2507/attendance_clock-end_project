@@ -23,5 +23,5 @@ app.use(express.static(path.join(__dirname, "js")));
 app.set("view engine","ejs");
 
 app.listen(port, () => {
-    console.log(`employees - http://localhost:${port}/front/Emp\n clock - http://localhost:${port}/front/shift`);
+    console.log(` employees - http://localhost:${port}/front/Emp\n clock - http://localhost:${port}/front/shift\n table - http://localhost:${port}/front/table`);
 });
