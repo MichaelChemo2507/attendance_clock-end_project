@@ -40,7 +40,7 @@ router.delete("/Delete/:id",(req,res)=>{
 
 router.get("/List/:id",(req, res) => {
     let id=req.params.id;
-    let addQuery = `SELECT C.Employee_id, E.FirstName, E.LastName, C.Entry_time, C.Exit_time`;
+    let addQuery = `SELECT C.id, C.Employee_id, E.FirstName, E.LastName, C.Entry_time, C.Exit_time`;
     addQuery += ` FROM employees_clock C JOIN employees E`;
     addQuery += ` ON C.Employee_id = E.Employee_id`;
     if(id>0)addQuery += ` WHERE E.Employee_id = ${id}`;

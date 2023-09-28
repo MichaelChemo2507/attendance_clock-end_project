@@ -8,3 +8,6 @@ router.get('/Emp',(req,res)=> {
 router.get('/shift',(req,res)=> {
     res.render("main_shift");
 });
+router.get('/table',(req,res)=> {
+    res.render("main_table");
+});
