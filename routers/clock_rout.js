@@ -3,9 +3,10 @@ const router = express.Router();
 module.exports = router;
 
 router.post("/Entry/:emp_id",(req,res)=>{
-    let {Entry_time} = req.body;
-    let Query = `INSERT INTO employees_clock(Employee_id,Entry_time) `;
-    Query += `VALUES('${req.params.emp_id}','${Entry_time}')`;
+    let id = req.params.emp_id ;
+    let Query = `INSERT INTO employees_clock(Employee_id,Entry_time)`;
+    Query += `SELECT Employee_id,CURRENT_TIMESTAMP FROM employees`;
+    Query += ` WHERE Employee_id = ${id} AND NOT EXISTS (SELECT * FROM employees_clock WHERE Employee_id = ${id} AND Exit_time IS NULL)`;
     db_pool.query(Query,function (err,rows,fields,){
         if (err){
             res.status(500).json({message:err});
@@ -15,14 +16,13 @@ router.post("/Entry/:emp_id",(req,res)=>{
     })
 });
 router.post("/Exit/:id",(req,res)=>{
-    let {Exit_time} = req.body;
     let Query = `UPDATE employees_clock `;
-    Query += `SET Exit_time = '${Exit_time}' WHERE id = ${req.params.id}`;
+    Query += `SET Exit_time = CURRENT_TIMESTAMP WHERE Employee_id = ${req.params.id} AND Exit_time IS NULL`;
     db_pool.query(Query,function (err,rows,fields,){
         if (err){
             res.status(500).json({message:err});
         }else{
-            res.status(200).json({message:"OK"});
+            res.status(200).json({message:"OK",Last_Id:rows.insertId});
         }
     })
 });
